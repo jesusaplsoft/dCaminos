@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>GraphNode.java</title>
+<meta name="Generator" content="SciTE - www.Scintilla.org" />
+<style type="text/css">
+.S0 {
+	color: #808080;
+}
+.S3 {
+	font-family: 'Comic Sans MS';
+	color: #3F703F;
+	font-size: 9pt;
+}
+.S4 {
+	color: #007F7F;
+}
+.S5 {
+	font-weight: bold;
+	color: #00007F;
+}
+.S6 {
+	color: #7F007F;
+}
+.S10 {
+	font-weight: bold;
+	color: #000000;
+}
+.S18 {
+	font-family: 'Comic Sans MS';
+	color: #804020;
+	font-size: 9pt;
+}
+span {
+	font-family: 'Verdana';
+	color: #000000;
+	font-size: 10pt;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<span><span class="S5">package</span><span class="S0"> </span>graphs<span class="S10">;</span><br />
+<br />
+<span class="S5">import</span><span class="S0"> </span>java<span class="S10">.</span>util<span class="S10">.</span>ArrayList<span class="S10">;</span><br />
+<br />
+<span class="S3">/**</span><br />
+<span class="S3">&nbsp;* </span><br />
+<span class="S3">&nbsp;* </span><span class="S18">@author</span><span class="S3"> vsutskever</span><br />
+<span class="S3">&nbsp;* </span><br />
+<span class="S3">&nbsp;*/</span><br />
+<span class="S5">final</span><span class="S0"> </span><span class="S5">class</span><span class="S0"> </span>Edge<span class="S0"> </span><span class="S10">{</span><br />
+<br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">private</span><span class="S0"> </span>GraphNode<span class="S0"> </span>node<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">private</span><span class="S0"> </span>Integer<span class="S0"> </span>cost<span class="S10">;</span><br />
+<br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span>Edge<span class="S10">(</span>GraphNode<span class="S0"> </span>nodeTo<span class="S10">,</span><span class="S0"> </span>Integer<span class="S0"> </span>cost<span class="S10">)</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>node<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>nodeTo<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>cost<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>cost<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@return</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span>GraphNode<span class="S0"> </span>getNode<span class="S10">()</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">return</span><span class="S0"> </span>node<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@return</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span>Integer<span class="S0"> </span>getCost<span class="S10">()</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">return</span><span class="S0"> </span>cost<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S3">/**</span><br />
+<span class="S3">&nbsp;* </span><span class="S18">@author</span><span class="S3"> vsutskever</span><br />
+<span class="S3">&nbsp;*/</span><br />
+<span class="S5">public</span><span class="S0"> </span><span class="S5">class</span><span class="S0"> </span>GraphNode<span class="S0"> </span><span class="S5">implements</span><span class="S0"> </span>Comparable<span class="S10">&lt;</span>GraphNode<span class="S10">&gt;</span><span class="S0"> </span><span class="S10">{</span><br />
+<br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">private</span><span class="S0"> </span><span class="S5">static</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span>nodeCount<span class="S10">=</span><span class="S4">0</span><span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">private</span><span class="S0"> </span>ArrayList<span class="S10">&lt;</span>Edge<span class="S10">&gt;</span><span class="S0"> </span>outGoingEdges<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>ArrayList<span class="S10">&lt;</span>Edge<span class="S10">&gt;();</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">private</span><span class="S0"> </span>String<span class="S0"> </span>val<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">private</span><span class="S0"> </span>Integer<span class="S0"> </span>ID<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">private</span><span class="S0"> </span><span class="S5">boolean</span><span class="S0"> </span>visited<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">private</span><span class="S0"> </span>Integer<span class="S0"> </span>distance<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>GraphConstants<span class="S10">.</span>INFINITY<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@param</span><span class="S3"> value</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span>GraphNode<span class="S10">(</span>String<span class="S0"> </span>value<span class="S10">)</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>init<span class="S10">(</span>value<span class="S10">);</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span>GraphNode<span class="S10">(){</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>init<span class="S10">(</span><span class="S6">""</span><span class="S10">);</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * Initializes </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@param</span><span class="S3"> nodeVal</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">private</span><span class="S0"> </span><span class="S5">void</span><span class="S0"> </span>init<span class="S10">(</span>String<span class="S0"> </span>nodeVal<span class="S10">){</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>val<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>nodeVal<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>ID<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>GraphNode<span class="S10">.</span>nodeCount<span class="S10">++;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>visited<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>false<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@return</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span><span class="S5">void</span><span class="S0"> </span>setVisited<span class="S10">(</span><span class="S5">boolean</span><span class="S0"> </span>visited<span class="S10">)</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>System<span class="S10">.</span>out<span class="S10">.</span>println<span class="S10">(</span><span class="S6">"Visited"</span><span class="S10">+</span><span class="S0"> </span><span class="S5">this</span><span class="S10">.</span>val<span class="S10">);</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>visited<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>visited<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@param</span><span class="S3"> node</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@param</span><span class="S3"> cost</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span><span class="S5">void</span><span class="S0"> </span>AddOutgoingEdge<span class="S10">(</span>GraphNode<span class="S0"> </span>node<span class="S10">,</span>Integer<span class="S0"> </span>cost<span class="S10">)</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>outGoingEdges<span class="S10">.</span>add<span class="S10">(</span><span class="S5">new</span><span class="S0"> </span>Edge<span class="S10">(</span>node<span class="S10">,</span>cost<span class="S10">));</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@return</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span>ArrayList<span class="S10">&lt;</span>Edge<span class="S10">&gt;</span><span class="S0"> </span>getOutGoingEdges<span class="S10">()</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">return</span><span class="S0"> </span>outGoingEdges<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span>String<span class="S0"> </span>getVal<span class="S10">()</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">return</span><span class="S0"> </span>val<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@param</span><span class="S3"> node</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@param</span><span class="S3"> cost</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span><span class="S5">void</span><span class="S0"> </span>setVal<span class="S10">(</span>String<span class="S0"> </span>val<span class="S10">)</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>val<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>val<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@return</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span>Integer<span class="S0"> </span>getID<span class="S10">()</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">return</span><span class="S0"> </span>ID<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span>@Override<br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span>compareTo<span class="S10">(</span>GraphNode<span class="S0"> </span>arg0<span class="S10">)</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">return</span><span class="S0"> </span><span class="S5">this</span><span class="S10">.</span>distance<span class="S10">.</span>compareTo<span class="S10">(</span>arg0<span class="S10">.</span>getDistance<span class="S10">());</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@return</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span>Integer<span class="S0"> </span>getDistance<span class="S10">()</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">return</span><span class="S0"> </span>distance<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><span class="S18">@param</span><span class="S3"> distance</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span><span class="S5">void</span><span class="S0"> </span>setDistance<span class="S10">(</span>Integer<span class="S0"> </span>distance<span class="S10">)</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>distance<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>distance<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<br />
+<br />
+<span class="S10">}</span><br />
+<span class="S0"></span></span>
+</body>
+</html>

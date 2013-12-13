@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Dijkstra.java</title>
+<meta name="Generator" content="SciTE - www.Scintilla.org" />
+<style type="text/css">
+.S0 {
+	color: #808080;
+}
+.S2 {
+	font-family: 'Comic Sans MS';
+	color: #007F00;
+	font-size: 9pt;
+}
+.S3 {
+	font-family: 'Comic Sans MS';
+	color: #3F703F;
+	font-size: 9pt;
+}
+.S4 {
+	color: #007F7F;
+}
+.S5 {
+	font-weight: bold;
+	color: #00007F;
+}
+.S10 {
+	font-weight: bold;
+	color: #000000;
+}
+.S18 {
+	font-family: 'Comic Sans MS';
+	color: #804020;
+	font-size: 9pt;
+}
+span {
+	font-family: 'Verdana';
+	color: #000000;
+	font-size: 10pt;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<span><span class="S5">package</span><span class="S0"> </span>graphs<span class="S10">;</span><br />
+<span class="S5">import</span><span class="S0"> </span>java<span class="S10">.</span>util<span class="S10">.</span>Hashtable<span class="S10">;</span><br />
+<br />
+<span class="S3">/**</span><br />
+<span class="S3">&nbsp;* </span><span class="S18">@author</span><span class="S3"> vsutskever</span><br />
+<span class="S3">&nbsp;*</span><br />
+<span class="S3">&nbsp;*/</span><br />
+<span class="S5">public</span><span class="S0"> </span><span class="S5">class</span><span class="S0"> </span>Dijkstra<span class="S0"> </span><span class="S10">{</span><br />
+<br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">private</span><span class="S0"> </span>Graph<span class="S0"> </span>graph<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S2">//priority queue stores all of the nodes, reachable from the start node</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S2">//The queue is sorted by the node.distance </span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">private</span><span class="S0"> </span>GraphNodePriorityQueue<span class="S0"> </span>priorityQ<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>GraphNodePriorityQueue<span class="S10">();</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">private</span><span class="S0"> </span>Hashtable<span class="S0"> </span><span class="S10">&lt;</span>GraphNode<span class="S10">,</span>Integer<span class="S10">&gt;</span><span class="S0"> </span>distance<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">new</span><span class="S0"> </span>Hashtable<span class="S10">&lt;</span>GraphNode<span class="S10">,</span><span class="S0"> </span>Integer<span class="S10">&gt;();</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S2">//1. needs to get the list of all nodes in the graph</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S2">//2. need to initialize distance vector to infinity</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S2">//3. Need Edge Cost function</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span>Dijkstra<span class="S0"> </span><span class="S10">(</span>Graph<span class="S0"> </span>g<span class="S10">){</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>graph<span class="S0"> &nbsp;</span><span class="S10">=</span><span class="S0"> </span>g<span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>graph<span class="S10">.</span>getStartNode<span class="S10">().</span>setDistance<span class="S10">(</span><span class="S4">0</span><span class="S10">);</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>priorityQ<span class="S10">.</span>add<span class="S10">(</span><span class="S5">this</span><span class="S10">.</span>graph<span class="S10">.</span>getAllNodes<span class="S10">());</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * Actual algorithm</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span><span class="S5">void</span><span class="S0"> </span>go<span class="S10">(){</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">while</span><span class="S0"> </span><span class="S10">(</span><span class="S5">this</span><span class="S10">.</span>priorityQ<span class="S10">.</span>hasMore<span class="S10">()){</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>GraphNode<span class="S0"> </span>n<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S5">this</span><span class="S10">.</span>priorityQ<span class="S10">.</span>remove<span class="S10">();</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">for</span><span class="S0"> </span><span class="S10">(</span>Edge<span class="S0"> </span>e<span class="S10">:</span><span class="S0"> </span>n<span class="S10">.</span>getOutGoingEdges<span class="S10">()){</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>GraphNode<span class="S0"> </span>adjNode<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>e<span class="S10">.</span>getNode<span class="S10">();</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>Integer<span class="S0"> </span>newPossiblePathCost<span class="S0"> </span><span class="S10">=</span><span class="S0"> </span>e<span class="S10">.</span>getCost<span class="S10">()+</span>n<span class="S10">.</span>getDistance<span class="S10">();</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">if</span><span class="S0"> </span><span class="S10">(</span>newPossiblePathCost<span class="S10">&lt;</span>adjNode<span class="S10">.</span>getDistance<span class="S10">()){</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>adjNode<span class="S10">.</span>setDistance<span class="S10">(</span>newPossiblePathCost<span class="S10">);</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>priorityQ<span class="S10">.</span>updateGraphNodeDistance<span class="S10">(</span>adjNode<span class="S10">);</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><span class="S0">&nbsp; &nbsp; &nbsp; &nbsp;</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S3">/**</span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  * </span><br />
+<span class="S3">&nbsp; &nbsp; &nbsp; &nbsp;  */</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">public</span><span class="S0"> </span><span class="S5">void</span><span class="S0"> </span>PrintStatusOfPriorityQ<span class="S10">(){</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S5">this</span><span class="S10">.</span>priorityQ<span class="S10">.</span>PrintContents<span class="S10">();</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="S10">}</span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><br />
+<span class="S0">&nbsp; &nbsp; &nbsp; &nbsp; </span><br />
+<span class="S10">}</span><br />
+<span class="S0"></span></span>
+</body>
+</html>
