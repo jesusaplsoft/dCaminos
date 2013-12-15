@@ -36,6 +36,13 @@
           <include>pmd-rules.xml</include>
         </includes>
       </resource>
+      <resource>
+        <targetPath>..</targetPath>
+        <directory>resources</directory>
+        <includes>
+          <include>pmd-rules.xml</include>
+        </includes>
+      </resource>
     </resources>
     <testResources>
       <testResource>
