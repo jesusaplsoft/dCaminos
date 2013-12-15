@@ -33,6 +33,7 @@
         <directory>resources</directory>
         <includes>
           <include>*.properties</include>
+          <include>pmd-rules.xml</include>
         </includes>
       </resource>
     </resources>
