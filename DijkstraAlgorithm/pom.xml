@@ -22,7 +22,7 @@
     <testOutputDirectory>target/test-classes</testOutputDirectory>
     <resources>
       <resource>
-        <targetPath>/resources</targetPath>
+        <targetPath>./resources</targetPath>
         <directory>resources</directory>
         <includes>
           <include>bundle/**/*.properties</include>
