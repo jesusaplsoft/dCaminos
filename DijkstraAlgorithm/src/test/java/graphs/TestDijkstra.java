@@ -104,7 +104,7 @@ public class TestDijkstra {
 
         TestDijkstra.D.AddOutgoingEdge(TestDijkstra.E, 100);
         Assert.assertTrue("La lista no tiene 1 elemento",
-            TestDijkstra.D.getOutGoingEdges().size() == 2);
+            TestDijkstra.D.getOutGoingEdges().size() == 1);
     }
 
     /**

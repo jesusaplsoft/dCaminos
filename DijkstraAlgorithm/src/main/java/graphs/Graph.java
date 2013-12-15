@@ -50,7 +50,7 @@ public class Graph {
     }
 
     /**
-     * @param  n
+     * @param  n  nodo
      */
     private void bfs(final GraphNode n) {
         this.visit(n);
@@ -67,7 +67,7 @@ public class Graph {
     /**
      * @param   n
      *
-     * @return
+     * @return  si está visitado o no
      */
     private boolean isVisited(final GraphNode n) {
         return this.visitedNodes.contains(n.getID());
