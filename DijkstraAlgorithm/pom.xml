@@ -33,7 +33,6 @@
         <directory>resources</directory>
         <includes>
           <include>*.properties</include>
-          <include>pmd-rules.xml</include>
         </includes>
       </resource>
       <resource>
@@ -264,7 +263,7 @@
                     <aggregate>true</aggregate>
                     <format>xml</format>
                     <rulesets>
-                      <ruleset>/pmd-rules.xml</ruleset>
+                      <ruleset>pmd-rules.xml</ruleset>
                     </rulesets>
                     <!-- CPD options -->
                     <minimumTokens>20</minimumTokens>
