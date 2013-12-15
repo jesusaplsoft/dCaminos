@@ -263,7 +263,7 @@
                     <aggregate>true</aggregate>
                     <format>xml</format>
                     <rulesets>
-                      <ruleset>pmd-rules.xml</ruleset>
+			    <ruleset>target/pmd-rules.xml</ruleset>
                     </rulesets>
                     <!-- CPD options -->
                     <minimumTokens>20</minimumTokens>
