@@ -5,15 +5,15 @@
   <artifactId>DijkstraAlgorithm</artifactId>
   <packaging>jar</packaging>
   <version>1.0.0</version>
-  <name>Algoritmo de Caminos mÃ­nimos</name>
+  <name>Algoritmo de Caminos mínimos</name>
   <properties>
     <build.number>SNAPSHOT</build.number>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <easyb.version>1.4</easyb.version>
     <cobertura.version>2.6</cobertura.version>
-    <!-- A workaround for a bug in PMD -->
     <targetJdk>1.7</targetJdk>
     <github.account>jesusaplsoft</github.account>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
@@ -22,7 +22,7 @@
     <testOutputDirectory>target/test-classes</testOutputDirectory>
     <resources>
       <resource>
-        <targetPath>./resources</targetPath>
+        <targetPath>/resources</targetPath>
         <directory>resources</directory>
         <includes>
           <include>bundle/**/*.properties</include>
@@ -36,10 +36,26 @@
         </includes>
       </resource>
       <resource>
-        <targetPath>..</targetPath>
+        <targetPath>./rulesets/java</targetPath>
+        <directory>resources/pmdRules</directory>
+        <includes>
+          <include>basic.xml</include>
+          <include>unusedcode.xml</include>
+          <include>imports.xml</include>
+        </includes>
+      </resource>
+      <resource>
+        <targetPath>.</targetPath>
         <directory>resources</directory>
         <includes>
-          <include>pmd-rules.xml</include>
+          <include>LICENSE.txt</include>
+        </includes>
+      </resource>
+      <resource>
+        <targetPath>./config</targetPath>
+        <directory>resources/config</directory>
+        <includes>
+          <include>sun_checks.xml</include>
         </includes>
       </resource>
     </resources>
@@ -58,7 +74,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <compilerVersion>1.7</compilerVersion>
+          <compilerVersion>${targetJdk}</compilerVersion>
           <fork>true</fork>
           <source>1.7</source>
           <target>1.7</target>
@@ -172,6 +188,11 @@
       <artifactId>xml-apis</artifactId>
       <version>2.0.2</version>
     </dependency>
+    <dependency>
+      <groupId>org.umlgraph</groupId>
+      <artifactId>umlgraph</artifactId>
+      <version>5.6.6</version>
+    </dependency>
   </dependencies>
   <profiles>
     <profile>
@@ -190,7 +211,7 @@
             <artifactId>maven-pmd-plugin</artifactId>
             <version>2.5</version>
             <configuration>
-              <targetJdk>1.7</targetJdk>
+              <targetJdk>${targetJdk}</targetJdk>
               <aggregate>true</aggregate>
               <format>xml</format>
               <!-- CPD options -->
@@ -207,6 +228,17 @@
             <configuration>
               <effort>Max</effort>
               <xmlOutput>true</xmlOutput>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>cobertura-maven-plugin</artifactId>
+            <version>${cobertura.version}</version>
+            <configuration>
+              <outputDirectory>./reports</outputDirectory>
+              <formats>
+                <format>xml</format>
+              </formats>
             </configuration>
           </plugin>
         </plugins>
@@ -244,6 +276,7 @@
             <artifactId>maven-site-plugin</artifactId>
             <version>3.3</version>
             <configuration>
+              <outputDirectory>./reports</outputDirectory>
               <reportPlugins>
                 <plugin>
                   <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -263,18 +296,19 @@
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-checkstyle-plugin</artifactId>
                   <version>2.11</version>
+                  <configuration>
+                    <linkXRef>false</linkXRef>
+                  </configuration>
                 </plugin>
                 <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-pmd-plugin</artifactId>
                   <version>3.0.1</version>
                   <configuration>
-                    <targetJdk>1.7</targetJdk>
+                    <targetJdk>${targetJdk}</targetJdk>
                     <aggregate>true</aggregate>
                     <format>xml</format>
-                    <rulesets>
-                      <ruleset>target/pmd-rules.xml</ruleset>
-                    </rulesets>
+                    <linkXRef>false</linkXRef>
                     <!-- CPD options -->
                     <minimumTokens>20</minimumTokens>
                     <ignoreIdentifiers>true</ignoreIdentifiers>
@@ -293,15 +327,16 @@
                   <artifactId>maven-javadoc-plugin</artifactId>
                   <version>2.9.1</version>
                   <configuration>
-                    <source>1.6</source>
+                    <source>1.7</source>
                     <doclet>
-                      gr.spinellis.umlgraph.doclet.UmlGraphDoc
+                      org.umlgraph.doclet.UmlGraph
                     </doclet>
                     <docletArtifact>
-                      <groupId>gr.spinellis</groupId>
-                      <artifactId>UmlGraph</artifactId>
-                      <version>4.6</version>
+                      <groupId>org.umlgraph</groupId>
+                      <artifactId>umlgraph</artifactId>
+                      <version>5.6.6</version>
                     </docletArtifact>
+                    <useStandardDocletOptions>false</useStandardDocletOptions>
                     <additionalparam>
                       -inferrel -inferdep -hide java.*
                       -collpackages
@@ -309,6 +344,11 @@
                       -enumerations -enumconstants
                     </additionalparam>
                   </configuration>
+                </plugin>
+                <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-jxr-plugin</artifactId>
+                  <version>2.3</version>
                 </plugin>
                 <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
